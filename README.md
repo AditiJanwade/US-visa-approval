@@ -23,11 +23,11 @@ git push origin main
 ## How to run?
 
 ```bash
-conda create -n visa python=3.8 -y
+python -m venv visa
 ```
 
 ```bash
-conda activate visa
+visa\Scripts\activate
 ```
 
 ```bash
