@@ -35,15 +35,6 @@ pip install -r requirements.txt
 ```
 
 ## Workflow:
-1.constant
-2.entity
-3.components
-<<<<<<< HEAD
-4.pipeline
-=======
-4.pipeline
-
-## Workflow:
 
 1. constants
 2. entity
