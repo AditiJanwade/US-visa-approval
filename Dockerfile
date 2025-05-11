@@ -1,10 +1,13 @@
+FROM python:3.8-slim
 
-FROM python:3.8.5-slim-buster
-
+# Set the working directory in the container
 WORKDIR /app
 
+# Copy the current directory contents into the container at /app
 COPY . /app
 
-RUN pip install -r requirements.txt
+# Install dependencies from requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt -v
 
+# Run the application
 CMD ["python3", "app.py"]
