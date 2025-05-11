@@ -80,4 +80,10 @@ jobs:
               -e AWS_DEFAULT_REGION="${{ secrets.AWS_DEFAULT_REGION }}" \
               -e MONGODB_URL="${{ secrets.MONGODB_URL }}" \
               -p 8080:8080 \
-              "$IMAGE"   
+              "$IMAGE"
+          shell: /usr/bin/bash -e {0}
+          env:
+            AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+            AWS_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+            AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
