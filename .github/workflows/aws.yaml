@@ -62,7 +62,7 @@ jobs:
           id: login-ecr
           uses: aws-actions/amazon-ecr-login@v1
 
-        
+                
         - name: Run Docker Image to serve users
           run: |
             IMAGE="${{ steps.login-ecr.outputs.registry }}/${{ secrets.ECR_REPO }}:latest"
