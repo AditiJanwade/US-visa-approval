@@ -10,7 +10,7 @@ from us_visa.exception import USvisaException
 from us_visa.logger import logging
 from us_visa.utils.main_utils import read_yaml_file
 from pandas import DataFrame
-
+from us_visa.utils.main_utils import load_object  
 
 class USvisaData:
     def __init__(self,
@@ -116,3 +116,18 @@ class USvisaClassifier:
         
         except Exception as e:
             raise USvisaException(e, sys)
+
+    # def predict(self, dataframe) -> str:
+  
+    #     try:
+    #         logging.info("Entered predict method of USvisaClassifier class")
+
+    #         # Full local model path
+    #         model_path = os.path.join("artifact", "05_11_2025_17_36_46", "model_trainer", "trained_model", "model.pkl")
+    #         model = load_object(model_path)
+
+    #         result = model.predict(dataframe)
+    #         return result
+
+    #     except Exception as e:
+    #         raise USvisaException(e, sys)
