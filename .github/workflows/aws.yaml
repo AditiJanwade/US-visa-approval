@@ -70,7 +70,7 @@ jobs:
           run: pip install -r requirements.txt # Install all dependencies
 
         - name: Check scikit-learn version # Optional, for debugging
-          run: python -c "import sklearn; print(sklearn.__version__)"
+          # run: python -c "import sklearn; print(sklearn.__version__)"
                 
         - name: Run Docker Image to serve users
           run: |
