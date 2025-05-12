@@ -71,8 +71,6 @@ jobs:
 
         - name: Check scikit-learn version 
           run: python -c "import sklearn; print(sklearn.__version__)"
-
-      
                 
         - name: Run Docker Image to serve users
           run: |
