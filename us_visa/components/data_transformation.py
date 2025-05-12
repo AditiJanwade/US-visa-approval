@@ -44,21 +44,13 @@ class DataTransformation:
     
     def get_data_transformer_object(self) -> Pipeline:
         """
-        Method Name :   get_data_transformer_object
-        Description :   This method creates and returns a data transformer object for the data
-        
-        Output      :   data transformer object is created and returned 
-        On Failure  :   Write an exception log and then raise an exception
+        Creates and returns a ColumnTransformer compatible with sklearn==1.3.2
         """
-        logging.info(
-            "Entered get_data_transformer_object method of DataTransformation class"
-        )
+        logging.info("Entered get_data_transformer_object method of DataTransformation class")
 
         try:
-            logging.info("Got numerical cols from schema config")
-
             numeric_transformer = StandardScaler()
-            oh_transformer = OneHotEncoder()
+            oh_transformer = OneHotEncoder(handle_unknown='ignore', sparse_output=False)  # Note: sparse_output only if supported
             ordinal_encoder = OrdinalEncoder()
 
             logging.info("Initialized StandardScaler, OneHotEncoder, OrdinalEncoder")
@@ -68,25 +60,23 @@ class DataTransformation:
             transform_columns = self._schema_config['transform_columns']
             num_features = self._schema_config['num_features']
 
-            logging.info("Initialize PowerTransformer")
-
             transform_pipe = Pipeline(steps=[
-                ('transformer', PowerTransformer(method='yeo-johnson'))
+                ('power', PowerTransformer(method='yeo-johnson'))
             ])
+
             preprocessor = ColumnTransformer(
-                [
-                    ("OneHotEncoder", oh_transformer, oh_columns),
-                    ("Ordinal_Encoder", ordinal_encoder, or_columns),
-                    ("Transformer", transform_pipe, transform_columns),
-                    ("StandardScaler", numeric_transformer, num_features)
-                ]
+                transformers=[
+                    ("onehot", oh_transformer, oh_columns),
+                    ("ordinal", ordinal_encoder, or_columns),
+                    ("power", transform_pipe, transform_columns),
+                    ("scale", numeric_transformer, num_features)
+                ],
+                remainder='drop'  # Avoid touching internal _RemainderColsList
             )
 
-            logging.info("Created preprocessor object from ColumnTransformer")
+            logging.info("Created preprocessor object using ColumnTransformer")
 
-            logging.info(
-                "Exited get_data_transformer_object method of DataTransformation class"
-            )
+            logging.info("Exited get_data_transformer_object method of DataTransformation class")
             return preprocessor
 
         except Exception as e:
