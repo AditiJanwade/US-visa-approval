@@ -9,7 +9,7 @@
 - Data link: https://www.kaggle.com/datasets/moro23/easyvisa-dataset
 
 
-## Git commands
+## Git commands for project setup
 
 ```bash
 git add .
