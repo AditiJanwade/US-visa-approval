@@ -119,7 +119,11 @@ export AWS_SECRET_ACCESS_KEY=<AWS_SECRET_ACCESS_KEY>
     setting>actions>runner>new self hosted runner> choose os> then run command one by one
 
 
+<<<<<<< HEAD
 # 7. Setup github secrets:::::m
+=======
+# 7. Setup github secrets:::
+>>>>>>> db51aac54f9367659a569bc9a2de2b228266bc42
 
    - AWS_ACCESS_KEY_ID
    - AWS_SECRET_ACCESS_KEY
